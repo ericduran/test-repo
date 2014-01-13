@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>2 HTTP Connects</title>
+<script>
+var gTop = Number(new Date());
+var gScriptMsg = "";
+function cuz_addHandler(elem, sType, fn, capture) {
+    capture = (capture) ? true : false;
+    if (elem.addEventListener) {
+        elem.addEventListener(sType, fn, capture);
+    }
+    else if (elem.attachEvent) {
+        elem.attachEvent("on" + sType, fn);
+    }
+    else {
+        // Netscape 4
+        if ( elem["on" + sType] ) {
+            // Do nothing - we don't want to overwrite an existing handler.
+        }
+        else {
+            elem["on" + sType] = fn;
+        }
+    }
+}
+function doOnload() {
+	var end = Number(new Date());
+    document.getElementById('loadtime').innerHTML = 'page load time: ' + (end - gTop) + ' ms';
+}
+cuz_addHandler(window, 'load', doOnload);
+</script>
+<link rel="stylesheet" href="stylesheet.css?kjhjkh" />
+</head>
+<body>
+<p>1 stylesheet files with 125.000 bytes each +<br />
+1 JavaScript files with 125.000 bytes each<br />
+= 2 HTTP connects and 250.000 bytes</p>
+<p>+ 10 Image files with 10.000 Bytes each</p>
+<p><strong id="loadtime">?</strong></p>
+<script src="javascript.js?ljlkj"></script>
+</body>
+</html>
